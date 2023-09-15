@@ -3,11 +3,13 @@ import img1 from "../assets/img1.png";
 import img2 from "../assets/img2.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const SignupPage = () => {
+  const navigate = useNavigate();
   function accountHandler() {
+    navigate("/login");
     toast.success("Account Created Successfully");
   }
 
@@ -82,7 +84,7 @@ const SignupPage = () => {
               className="border w-[25rem] mt-6 py-3 px-4 rounded-lg bg-[#0D77EC] text-white font-bold hover:shadow-lg transition-all duration-200 "
               onClick={accountHandler}
             >
-              <Link to="/login">Create Account</Link>
+              Create Account
             </button>
             <p className="-mt-5">
               Already have an account?{" "}

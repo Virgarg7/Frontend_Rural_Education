@@ -4,7 +4,7 @@ import img3 from "../assets/img3.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const RegisterPage = () => {
+const RegisterPage = ({ setName }) => {
   const navigate = useNavigate();
   // const [FormData, setFormData] = useState({
   //   fullName: "",
@@ -19,6 +19,9 @@ const RegisterPage = () => {
   function submitHandler() {
     navigate("/login/register/dashboard");
     toast.success("Registered Successfully");
+  }
+  function changeHandler(e) {
+    setName(e.target.value);
   }
 
   return (
@@ -44,6 +47,7 @@ const RegisterPage = () => {
                         name="full_name"
                         id="full_name"
                         class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        onChange={(e) => changeHandler(e)}
                       />
                     </div>
 
@@ -134,7 +138,6 @@ const RegisterPage = () => {
                           id="state"
                           placeholder="State"
                           class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-                          value=""
                         />
                         <button
                           tabindex="-1"
@@ -181,7 +184,6 @@ const RegisterPage = () => {
                         id="zipcode"
                         class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         placeholder=""
-                        value=""
                       />
                     </div>
                     <div class="md:col-span-5 text-right">

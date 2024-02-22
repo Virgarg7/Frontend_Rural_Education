@@ -1,29 +1,31 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const Schema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     phone_no: {
         type: Number,
         required: true,
+        unique: true
     },
     password: {
         type: String,
         required: [true, 'Password is required']
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
-// Mongodb Middlewares 
-// It will encypt the password just before storing into database 
+// Mongodb Middleware 
+// It will encrypt the password just before storing it into the database 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
 
-    this.password = await bcrypt.hash(this.password, 10)
-    next()
-})
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+});
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-    return await bcrypt.compare(password, this.password)
-}
+    return await bcrypt.compare(password, this.password);
+};
 
-const login = mongoose.model("login", Schema)
+const Login = mongoose.model("Login", userSchema);
 
-export default login;
+module.exports = Login

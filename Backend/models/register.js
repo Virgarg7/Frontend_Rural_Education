@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const Schema = new mongoose.Schema({
     name: {
@@ -6,7 +6,7 @@ const Schema = new mongoose.Schema({
         required: true,
     },
     email: {
-        type: Number,
+        type: String,
         required: true,
     },
     street: {
@@ -20,20 +20,57 @@ const Schema = new mongoose.Schema({
     country: {
         type: String,
         required: true,
-        enum: []
+        enum: ["India"] // Only India is allowed
     },
     state: {
         type: String,
         required: true,
-        enum: []
+        enum: [
+            "Andaman and Nicobar Islands",
+            "Andhra Pradesh",
+            "Arunachal Pradesh",
+            "Assam",
+            "Bihar",
+            "Chandigarh",
+            "Chhattisgarh",
+            "Dadra and Nagar Haveli",
+            "Daman and Diu",
+            "Delhi",
+            "Goa",
+            "Gujarat",
+            "Haryana",
+            "Himachal Pradesh",
+            "Jammu and Kashmir",
+            "Jharkhand",
+            "Karnataka",
+            "Kerala",
+            "Ladakh",
+            "Lakshadweep",
+            "Madhya Pradesh",
+            "Maharashtra",
+            "Manipur",
+            "Meghalaya",
+            "Mizoram",
+            "Nagaland",
+            "Odisha",
+            "Puducherry",
+            "Punjab",
+            "Rajasthan",
+            "Sikkim",
+            "Tamil Nadu",
+            "Telangana",
+            "Tripura",
+            "Uttar Pradesh",
+            "Uttarakhand",
+            "West Bengal"
+        ]
     },
     zip_code: {
         type: String,
         required: true
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
+const Register = mongoose.model("Register", Schema);
 
-const Register = mongoose.model("Register", Schema)
-
-export default Register;
+module.exports =  Register
